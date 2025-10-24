@@ -1,0 +1,68 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    background-color: #0d47a1;
+
+    height: 100vh;
+    overflow: hidden;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 50px;
+}
+
+.operation-container {
+    display: flex;
+    gap: 50px;
+}
+
+button {
+    background-color: #7e4ae8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    font-size: 24px;
+}
+
+.button-blocker {
+    background-color: black;
+}
+
+.hover-style:hover {
+    background-color: #7c1599;
+    cursor: pointer;
+}
+
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#painting-picture {
+    height: 590px;
+    width: 590px;
+    background-color: white;
+    border: 5px solid black;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.point-box {
+    height: 20px;
+    width: 20px;
+    border: 2px solid #262626;
+}
