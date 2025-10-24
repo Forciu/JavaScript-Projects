@@ -17,11 +17,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #476059;
+
+    background-color: var(--color-bg);
 }
 
 .calculator-container {
-    background-color: black;
+    background-color: rgba(10, 10, 10, 0.6);
 
     width: 500px;
     height: 800px;
@@ -34,30 +35,33 @@ body {
 .screen {
     width: 100%;
     height: 200px;
-    background: linear-gradient(to bottom, #222, #000);
-    color: white;
+
+    background: var(--color-linear-gradient);
+    color: var(--color-text);
+
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* numbers stick to bottom */
-    align-items: flex-end;     /* right-align text */
+    justify-content: flex-end;
+    align-items: flex-end;
+
     padding: 20px;
-    box-sizing: border-box;
     border-top-left-radius: var(--radius-medium);
     border-top-right-radius: var(--radius-medium);
 }
 
 .calculation {
     font-size: 24px;
-    color: #7c81a0; /* smaller, muted color for the formula */
+    color: var(--color-text-secondary);
 }
 
 .result {
-    font-size: 48px;
+    font-size: var(--font-size-medium-v2);
     font-weight: bold;
 }
 
 .buttons {
-    background-color: #ffffff;
+    background-color: var(--color-bg-white);
+
     height: 600px;
     width: 500px;
     border-radius: var(--radius-base) var(--radius-base)  var(--radius-medium)  var(--radius-medium);
@@ -66,8 +70,8 @@ body {
 .button {
     height: 100px;
     width: 100px;
-    background-color: #000000;
-    color: #ffffff;
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text);
 
     display: flex;
     justify-content: center;
@@ -84,19 +88,20 @@ body {
 
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+    gap: var(--gap-size-medium);
 }
 
 .button.operator {
-    background-color: orange;
+    background-color: var(--color-bg-primary);
     color: white;
 }
 
 .button.clear {
-    background-color: grey;
+    background-color: var(--color-bg-grey);
     color: #ffffff;
 }
 
 .button.zero {
-    width: 100%; /* grid handles width with span */
+    width: 100%;
+    grid-column: span 2;
 }

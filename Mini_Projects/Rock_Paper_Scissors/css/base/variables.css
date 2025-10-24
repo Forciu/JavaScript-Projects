@@ -58,10 +58,10 @@ Medium: 11px
 /*Global using */
 
 :root {
-    --color-bg: #f9f9f9;
+    --color-bg: #ffffff;
     --color-text: #222;
-    --color-primary: #68f622;
-    --color-secondary: #6c757d;
+    --color-primary: #efc722;
+    --color-bg-secondary: rgba(0, 0, 0, 0.6);
 
     --font-base: "Inter", "Segoe UI";
     --font-size-base: 16px;
