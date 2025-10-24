@@ -58,10 +58,18 @@ Medium: 11px
 /*Global using */
 
 :root {
-    --color-bg: #dc3333;
-    --color-text: #222;
-    --color-primary: #68f622;
-    --color-secondary: #6c757d;
+    --color-bg: #476059;
+    --color-bg-primary: #FFA500FF;
+    --color-bg-secondary: #151414;
+
+    --color-bg-white: #f1eded;
+    --color-bg-grey: #696969;
+
+    --color-linear-gradient: linear-gradient(to bottom, #222, #000);
+
+    --color-text: #f1eded;
+    --color-text-secondary: #7c81a0;
+
 
     --font-base: "Inter", "Segoe UI";
     --font-size-base: 16px;
@@ -80,4 +88,8 @@ Medium: 11px
     --pdg-size-base-v2: 24px;
     --pdg-size-medium: 32px;
     --pdg-size-medium-v2: 48px;
+
+    --gap-size-base: 8px;
+    --gap-size-base-v2: 12px;
+    --gap-size-medium: 16px;
 }
