@@ -1,0 +1,120 @@
+@import url("base/variables.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: var(--font-base), sans-serif;
+    font-size: var(--font-size-base);
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: black;
+}
+
+.container {
+    background-color: white;
+    height: 80vh;
+    width: 80%;
+}
+
+.player-info {
+    background-color: var(--color-primary);
+    color: white;
+    padding: var(--pdg-size-medium-v2) 200px;
+    font-size: var(--font-size-medium-v2);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.player-score {
+    display: flex;
+    gap: 20px;
+}
+
+/*PLayer action section*/
+.player-activity-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.player-move {
+    padding: var(--pdg-size-medium-v2);
+    width: 80%;
+
+    font-size: var(--font-size-base-v2);
+}
+.players-move-info {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+.players-move-info p {
+    padding-bottom: 25px;
+}
+
+.players-move-placeholder {
+    display: flex;
+    justify-content: space-between;
+}
+
+.players-move-placeholder img {
+    height: 200px;
+}
+
+.player-available-move {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+
+    padding: var(--pdg-size-medium-v2);
+    font-size: var(--font-size-base-v2);
+}
+
+.player-available-move-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+button {
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: var(--font-size-base-v2);
+}
+
+button:hover {
+    background-color: #0d47a1;
+}
+
+
+.player-activity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+.player-activity span {
+    font-size: var(--font-size-medium-v2);
+}
