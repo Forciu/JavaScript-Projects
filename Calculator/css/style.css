@@ -1,0 +1,102 @@
+@import url("base/variables.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: var(--font-base), sans-serif;
+    font-size: var(--font-size-base);
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #476059;
+}
+
+.calculator-container {
+    background-color: black;
+
+    width: 500px;
+    height: 800px;
+    border-radius: var(--radius-medium);
+
+    display: flex;
+    flex-direction: column;
+}
+
+.screen {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(to bottom, #222, #000);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* numbers stick to bottom */
+    align-items: flex-end;     /* right-align text */
+    padding: 20px;
+    box-sizing: border-box;
+    border-top-left-radius: var(--radius-medium);
+    border-top-right-radius: var(--radius-medium);
+}
+
+.calculation {
+    font-size: 24px;
+    color: #7c81a0; /* smaller, muted color for the formula */
+}
+
+.result {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.buttons {
+    background-color: #ffffff;
+    height: 600px;
+    width: 500px;
+    border-radius: var(--radius-base) var(--radius-base)  var(--radius-medium)  var(--radius-medium);
+}
+
+.button {
+    height: 100px;
+    width: 100px;
+    background-color: #000000;
+    color: #ffffff;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: var(--font-size-medium);
+}
+
+.button-wrapper {
+    margin: 20px;
+    height: 560px;
+    width: 460px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.button.operator {
+    background-color: orange;
+    color: white;
+}
+
+.button.clear {
+    background-color: grey;
+    color: #ffffff;
+}
+
+.button.zero {
+    width: 100%; /* grid handles width with span */
+}
