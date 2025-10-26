@@ -9,34 +9,33 @@
 <body>
 <div class="calculator-container">
     <div class="screen">
-        <div class="calculation">120 × 10.5</div>
-        <div class="result">1260</div>
+        <div id="calculation"></div>
+        <div id="result">0</div>
     </div>
     <div class="buttons">
         <div class="button-wrapper">
-            <div class="button clear">AC</div>
-            <div class="button clear">±</div>
-            <div class="button clear">%</div>
-            <div class="button operator">÷</div>
+            <div class="button dark zero" id="button-clear">AC</div>
+            <div class="button dark action-button">%</div>
+            <div class="button operator action-button">/</div>
 
-            <div class="button">7</div>
-            <div class="button">8</div>
-            <div class="button">9</div>
-            <div class="button operator">×</div>
+            <div class="button button-number">7</div>
+            <div class="button button-number">8</div>
+            <div class="button button-number">9</div>
+            <div class="button operator action-button">*</div>
 
-            <div class="button">4</div>
-            <div class="button">5</div>
-            <div class="button">6</div>
-            <div class="button operator">−</div>
+            <div class="button button-number">4</div>
+            <div class="button button-number">5</div>
+            <div class="button button-number">6</div>
+            <div class="button operator action-button">-</div>
 
-            <div class="button">1</div>
-            <div class="button">2</div>
-            <div class="button">3</div>
-            <div class="button operator">+</div>
+            <div class="button button-number">1</div>
+            <div class="button button-number">2</div>
+            <div class="button button-number">3</div>
+            <div class="button operator action-button">+</div>
 
-            <div class="button zero">0</div>
-            <div class="button">.</div>
-            <div class="button operator">=</div>
+            <div class="button zero button-number">0</div>
+            <div class="button button-number">.</div>
+            <div class="button operator" id="sum">=</div>
         </div>
     </div>
 </div>

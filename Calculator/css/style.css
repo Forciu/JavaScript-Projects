@@ -49,22 +49,13 @@ body {
     border-top-right-radius: var(--radius-medium);
 }
 
-.calculation {
-    font-size: 24px;
-    color: var(--color-text-secondary);
-}
-
-.result {
-    font-size: var(--font-size-medium-v2);
-    font-weight: bold;
-}
 
 .buttons {
     background-color: var(--color-bg-white);
 
     height: 600px;
     width: 500px;
-    border-radius: var(--radius-base) var(--radius-base)  var(--radius-medium)  var(--radius-medium);
+    border-radius: var(--radius-base) var(--radius-base) var(--radius-medium) var(--radius-medium);
 }
 
 .button {
@@ -96,12 +87,38 @@ body {
     color: white;
 }
 
-.button.clear {
+.button.zero {
+    width: 100%;
+    grid-column: span 2;
+}
+
+.dark {
     background-color: var(--color-bg-grey);
     color: #ffffff;
 }
 
-.button.zero {
+#button-clear {
+    background-color: var(--color-bg-grey);
+    color: #ffffff;
+}
+
+#result {
+    height: 80px;
+
+    font-size: var(--font-size-medium-v2);
+    font-weight: bold;
+}
+
+#calculation {
+    font-size: 24px;
+    color: var(--color-text-secondary);
+}
+
+#calculation,
+#result {
     width: 100%;
-    grid-column: span 2;
+    text-align: right;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
 }
