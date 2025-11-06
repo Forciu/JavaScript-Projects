@@ -55,7 +55,8 @@ body {
 
     height: 600px;
     width: 500px;
-    border-radius: var(--radius-base) var(--radius-base) var(--radius-medium) var(--radius-medium);
+    border-radius: var(--radius-base) var(--radius-base)
+    var(--radius-medium) var(--radius-medium);
 }
 
 .button {

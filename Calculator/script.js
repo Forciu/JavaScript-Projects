@@ -4,6 +4,8 @@ const previousCalculation = document.getElementById("calculation")
 const numberButtons = document.querySelectorAll(".button-number")
 const sumButton = document.getElementById("sum")
 const operationsButton = document.querySelectorAll(".action-button")
+const deleteLastValueButton = document.getElementById("button-delete")
+
 
 function clearOperations() {
     operationResult.innerText = "0";
@@ -65,10 +67,23 @@ function addOperation(e) {
     }
 }
 
+function deleteLastValue() {
+    const expression = operationResult.innerText.split("");
+    if (operationResult.innerText === "0") {
+        return;
+    } else {
+        let deleteOperation = expression.slice(0, -1);
+        if (deleteOperation.length >= 1) {
+            operationResult.innerText = deleteOperation.join("");
+        }
+    }
+}
+
 //Event
 addEventListenerOperationButton();
 buttonClear.addEventListener("click", clearOperations);
 sumButton.addEventListener("click", operationSum);
+deleteLastValueButton.addEventListener("click", deleteLastValue);
 operationsButton.forEach((button) => {
     button.addEventListener("click", calculation);
 })
