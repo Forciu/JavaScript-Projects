@@ -6,7 +6,6 @@ const sumButton = document.getElementById("sum")
 const operationsButton = document.querySelectorAll(".action-button")
 const deleteLastValueButton = document.getElementById("button-delete")
 
-
 function clearOperations() {
     operationResult.innerText = "0";
     previousCalculation.innerText = "";
@@ -86,4 +85,5 @@ sumButton.addEventListener("click", operationSum);
 deleteLastValueButton.addEventListener("click", deleteLastValue);
 operationsButton.forEach((button) => {
     button.addEventListener("click", calculation);
+
 })
