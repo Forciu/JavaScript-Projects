@@ -10,6 +10,8 @@ Click the link to see the **live preview**.
 | Name | Description | Link |
 |---------|-------------|------|
 | 🧮 **Calculator** | Basic calculator running in the browser. Supports arithmetic operations. | [Live Preview](https://forciu.github.io/JavaScript-Projects/Calculator/) |
+| 📚 **Library** | Simple library app to track books. Allows adding, displaying, and managing books. | [Live Preview](https://forciu.github.io/JavaScript-Projects/Book_Library/) |
+
 
 
 ## 📦 JS Mini-Project
