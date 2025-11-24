@@ -1,0 +1,105 @@
+@import "base.css";
+@import "modern-normalize.css";
+
+body {
+    font-family: var(--font-family-base);
+    background-color: var(--color-bg);
+}
+
+
+.header {
+    background-color: white;
+    color: var(--color-text);
+    height: 100px;
+
+    font-size: var(--font-size-36);
+    box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+
+    margin-bottom: var(--space-4xl);
+}
+
+.books-operation {
+    gap: var(--space-2xl);
+    margin-bottom: var(--space-xl);
+}
+
+.books-operation label {
+    font-size: var(--font-size-20);
+    font-weight: 500;
+    margin-bottom: var(--space-sm);
+}
+
+.books-operation input, select {
+    height: 40px;
+
+    border: 1px solid var(--color-gray-light);
+    padding: var(--space-md);
+}
+
+.books-operation input {
+    width: 250px;
+}
+
+.books-operation select {
+    width: 125px;
+}
+
+.books-operation input:valid,
+.books-operation select:valid {
+    outline: none;
+    border-color: #3cb371;
+}
+
+.books-operation input:focus:valid,
+.books-operation select:focus:valid {
+    box-shadow: 0 0 5px rgba(60, 179, 113, 0.5);
+}
+
+.books-operation input:focus:invalid,
+.books-operation select:focus:invalid {
+    outline: none;
+    border-color: var(--color-warning);
+}
+
+.button {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+
+    border-radius: var(--radius-lg);
+    width: 150px;
+    height: 50px;
+
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--color-primary-dark);
+}
+
+.container-books {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 400px));
+    gap: 40px;
+    margin: 50px;
+}
+
+.book-info {
+    font-size: var(--font-size-20);
+    font-weight: var(--font-weight-bold);
+}
+
+.book {
+    background-color: var(--color-white);
+    color: var(--color-text);
+    border-radius: var(--radius-lg);
+
+
+    height: 300px;
+    justify-content: space-evenly;
+    padding: 20px;
+    gap: 35px;
+}
+
+.books-operations-buttons {
+    gap: 15px;
+}
