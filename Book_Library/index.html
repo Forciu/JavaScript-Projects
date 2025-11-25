@@ -8,6 +8,7 @@
           rel="stylesheet">
     <title>Book Library</title>
     <link rel="stylesheet" href="styles/style.css">
+    <script src="main.js" type="module"></script>
 </head>
 <body>
 <div class="container">
@@ -15,40 +16,29 @@
         <p>TOP Book Library </p>
     </div>
     <div class="container-books-operation flex flex-center">
-        <form id="book-operation">
+        <form id="form-book-operation">
             <div class="books-operation flex flex-center">
                 <div class="books-operation-name flex flex-column">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required minlength="0" maxlength="50">
+                    <label for="book-title">Name</label>
+                    <input type="text" id="book-title" name="name" required minlength="0" maxlength="50">
                 </div>
                 <div class="books-operation-author flex flex-column">
-                    <label for="author">Author</label>
-                    <input type="text" id="author" name="author" required minlength="0" maxlength="50">
+                    <label for="book-author">Author</label>
+                    <input type="text" id="book-author" name="author" required minlength="0" maxlength="50">
                 </div>
                 <div class="books-operation-status flex flex-column">
-                    <label for="status">Status</label>
-                    <select id="status" name="status" required>
+                    <label for="book-is-read">Status</label>
+                    <select id="book-is-read" name="status" required>
                         <option value="" disabled selected></option>
                         <option value="read">Read</option>
                         <option value="not read">Not read</option>
                     </select>
                 </div>
             </div>
-            <button class="button submit-button" type="submit">Submit</button>
+            <button class="button submit-button" type="submit" id="submit">Submit</button>
         </form>
     </div>
 </div>
-<div class="container-books grid">
-    <div class="book flex flex-column">
-        <div class="book-info flex flex-center flex-column">
-            <div class="book-title">NAME</div>
-            <div class="book-author">AUTHOR</div>
-        </div>
-        <div class="books-operations-buttons flex flex-center flex-column">
-            <button class="button" type="button">Status</button>
-            <button class="button" type="button">Remove</button>
-        </div>
-    </div>
-</div>
+<div class="container-books grid" id="container-books"></div>
 </body>
 </html>

@@ -81,6 +81,8 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(200px, 400px));
     gap: 40px;
     margin: 50px;
+
+    justify-content: center;
 }
 
 .book-info {
@@ -88,7 +90,7 @@ body {
     font-weight: var(--font-weight-bold);
 }
 
-.book {
+.book-card {
     background-color: var(--color-white);
     color: var(--color-text);
     border-radius: var(--radius-lg);
@@ -102,4 +104,20 @@ body {
 
 .books-operations-buttons {
     gap: 15px;
+}
+
+.read {
+    background-color: #2ecc71;
+}
+
+.to-read {
+    background-color: #e74c3c;
+}
+
+.read:hover {
+    background-color: #27ae60;
+}
+
+.to-read:hover {
+    background-color: #c0392b;
 }
