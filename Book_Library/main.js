@@ -91,7 +91,7 @@ const changeBookStatus = function () {
     } else {
         this.classList.remove("to-read");
         this.classList.add("read");
-        this.html = `Read`;
+        this.innerText = `Read`;
     }
 }
 
