@@ -1,10 +1,11 @@
 const submitForm = document.getElementById("form-book-operation");
 
 class Book {
-    constructor(title, author, isRead) {
+    constructor(title, author, isRead, id) {
         this.title = title;
         this.author = author;
         this.isRead = isRead;
+        this.id = id;
     }
 }
 
@@ -17,6 +18,10 @@ class Library {
         this.books.push(book);
         console.log(this.books)
     }
+
+    deleteBook(book) {
+        this.books.splice(book.id, 1);
+    }
 }
 
 const myLibrary = new Library();
@@ -26,6 +31,7 @@ const addBook = (e) => {
 
     const book = getBookInfo();
 
+    book.id = crypto.randomUUID()
     myLibrary.addBook(book);
     createCard(book);
 
@@ -73,6 +79,7 @@ const createCard = (book) => {
     removeBookButton.innerText = `Remove`;
 
     statusButton.addEventListener("click", changeBookStatus);
+    removeBookButton.addEventListener("click", () => deleteBook(book, card));
 }
 
 const changeBookStatus = function () {
@@ -86,6 +93,11 @@ const changeBookStatus = function () {
         this.classList.add("read");
         this.html = `Read`;
     }
+}
+
+const deleteBook = (book, card) => {
+    myLibrary.deleteBook(book.id);
+    card.remove()
 }
 
 submitForm.addEventListener("submit", addBook);
