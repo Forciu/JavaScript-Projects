@@ -15,6 +15,7 @@ class Library {
 
     addBook(book) {
         this.books.push(book);
+        console.log(this.books)
     }
 }
 
@@ -54,21 +55,37 @@ const createCard = (book) => {
     cardInfoDiv.appendChild(cardTitleText).className = "book-title";
     cardInfoDiv.appendChild(cardAuthorText).className = "book-author";
     card.appendChild(cardOperationsDiv).className = "books-operations-buttons flex flex-center flex-column";
-    cardOperationsDiv.appendChild(statusButton).className = "button";
-    cardOperationsDiv.appendChild(removeBookButton).className = "button";
+    cardOperationsDiv.appendChild(statusButton).className = "button book-button";
+    statusButton.id = "status-button";
+    cardOperationsDiv.appendChild(removeBookButton).className = "button book-button";
 
     cardTitleText.innerText = book.title;
     cardAuthorText.innerText = book.author;
 
     if (book.isRead === 'read') {
         statusButton.innerText = `Read`;
-        statusButton.style.backgroundColor = "#0a9f03";
+        statusButton.classList.add("read");
     } else {
         statusButton.innerText = `To read`;
-        statusButton.style.backgroundColor = "#ff2f2f";
+        statusButton.classList.add("to-read");
     }
 
     removeBookButton.innerText = `Remove`;
+
+    statusButton.addEventListener("click", changeBookStatus);
 }
 
-submitForm.onsubmit = addBook;
+const changeBookStatus = function () {
+    if (this.classList.contains("read")) {
+        this.classList.remove("read");
+        this.classList.add("to-read");
+        this.innerText = `To read`;
+
+    } else {
+        this.classList.remove("to-read");
+        this.classList.add("read");
+        this.html = `Read`;
+    }
+}
+
+submitForm.addEventListener("submit", addBook);

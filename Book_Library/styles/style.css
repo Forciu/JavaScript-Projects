@@ -105,3 +105,19 @@ body {
 .books-operations-buttons {
     gap: 15px;
 }
+
+.read {
+    background-color: #2ecc71;
+}
+
+.to-read {
+    background-color: #e74c3c;
+}
+
+.read:hover {
+    background-color: #27ae60;
+}
+
+.to-read:hover {
+    background-color: #c0392b;
+}
