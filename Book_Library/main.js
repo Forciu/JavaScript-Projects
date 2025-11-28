@@ -30,7 +30,7 @@ const addBook = (e) => {
     e.preventDefault();
 
     const book = getBookInfo();
-
+    if (!book) return;
     book.id = crypto.randomUUID()
     myLibrary.addBook(book);
     createCard(book);
@@ -43,7 +43,14 @@ const getBookInfo = () => {
     const bookAuthor = document.getElementById("book-author").value;
     const bookIsRead = document.getElementById("book-is-read").value;
 
-    return new Book(bookTitle, bookAuthor, bookIsRead);
+    if (myLibrary.books.some(
+        (b) => b.title === bookTitle
+    )) {
+        alert("Book already exists!");
+        return null;
+    } else {
+        return new Book(bookTitle, bookAuthor, bookIsRead);
+    }
 }
 
 const createCard = (book) => {
