@@ -88,6 +88,12 @@ body {
 .book-info {
     font-size: var(--font-size-20);
     font-weight: var(--font-weight-bold);
+    height: 150px;
+}
+
+.book-info p {
+    text-wrap: wrap;
+    text-align: center;
 }
 
 .book-card {
@@ -99,7 +105,7 @@ body {
     height: 300px;
     justify-content: space-evenly;
     padding: 20px;
-    gap: 35px;
+    gap:25px;
 }
 
 .books-operations-buttons {
