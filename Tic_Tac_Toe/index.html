@@ -14,15 +14,64 @@
 <div class="screen-start">
     <div class="game-start-info flex flex-center">
         <div class="game-start-container flex flex-column flex-center">
-            <h1 id="game-name">Tic Tac Toe</h1>
+            <h1 class="game-name">Tic Tac Toe</h1>
             <div class="game-move-options flex flex-column">
                 <p>Pick Player Sign</p>
                 <div class="game-move-choice-container flex flex-center">
                     <button class="game-options-button game-move-choice flex selected-move" id="choice-x">X</button>
                     <button class="game-options-button game-move-choice flex" id="choice-O">O</button>
                 </div>
+                <p>Choose your opponent</p>
+                <div class="game-move-choice-container flex flex-center">
+                    <button class="game-options-button game-move-choice game-opponent-choice flex selected-move" id="choice-ai">AI</button>
+                    <button class="game-options-button game-move-choice game-opponent-choice flex" id="choice-player">Player</button>
+                </div>
             </div>
-                <button class="game-options-button game-start-button">Start Game</button>
+            <button class="game-options-button game-start-button">Start Game</button>
+        </div>
+    </div>
+</div>
+<div class="screen-game">
+    <div class="game-container flex flex-column">
+        <div class="game-options-header flex">
+            <button class="button-option button-back" id="button-back">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+                </svg>
+            </button>
+            <h1 class="game-name">Tic Tac Toe</h1>
+            <button class="button-option button-restart" id="button-restart">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>autorenew</title>
+                    <path d="M12,6V9L16,5L12,1V4A8,8 0 0,0 4,12C4,13.57 4.46,15.03 5.24,16.26L6.7,14.8C6.25,13.97 6,13 6,12A6,6 0 0,1 12,6M18.76,7.74L17.3,9.2C17.74,10.04 18,11 18,12A6,6 0 0,1 12,18V15L8,19L12,23V20A8,8 0 0,0 20,12C20,10.43 19.54,8.97 18.76,7.74Z"/>
+                </svg>
+            </button>
+        </div>
+        <div class="board-container">
+            <div class="board">
+            </div>
+            <div class="board"></div>
+            <div class="board"></div>
+            <div class="board"></div>
+            <div class="board"></div>
+            <div class="board"></div>
+            <div class="board"></div>
+            <div class="board"></div>
+            <div class="board"></div>
+        </div>
+        <div class="game-options-footer flex">
+            <div class="game-result flex flex-column result-player">
+                <p>Player X</p>
+                <p>0</p>
+            </div>
+            <div class="game-result flex flex-column result-draw">
+                <p>Draw</p>
+                <p>0</p>
+            </div>
+            <div class="game-result flex flex-column result-o">
+                <p>Player O</p>
+                <p>0</p>
+            </div>
         </div>
     </div>
 </div>
