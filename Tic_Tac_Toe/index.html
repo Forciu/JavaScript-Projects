@@ -9,29 +9,30 @@
           rel="stylesheet">
     <title>Book Library</title>
     <link rel="stylesheet" href="style/style.css">
+    <script src="main.js" defer></script>
 </head>
 <body>
-<div class="screen-start">
+<div class="screen-start" id="setup-scene">
     <div class="game-start-info flex flex-center">
         <div class="game-start-container flex flex-column flex-center">
             <h1 class="game-name">Tic Tac Toe</h1>
             <div class="game-move-options flex flex-column">
                 <p>Pick Player Sign</p>
-                <div class="game-move-choice-container flex flex-center">
-                    <button class="game-options-button game-move-choice flex selected-move" id="choice-x">X</button>
-                    <button class="game-options-button game-move-choice flex" id="choice-O">O</button>
+                <div id="player-choice" class="game-move-choice-container flex flex-center">
+                    <button class="mark-button game-options-button game-move-choice flex selected-move" id="X">X</button>
+                    <button class="mark-button game-options-button game-move-choice flex" id="O">O</button>
                 </div>
                 <p>Choose your opponent</p>
                 <div class="game-move-choice-container flex flex-center">
-                    <button class="game-options-button game-move-choice game-opponent-choice flex selected-move" id="choice-ai">AI</button>
-                    <button class="game-options-button game-move-choice game-opponent-choice flex" id="choice-player">Player</button>
+                    <button class="game-options-button game-move-choice game-opponent-choice flex" id="choice-ai">AI</button>
+                    <button class="game-options-button game-move-choice game-opponent-choice flex selected-move" id="choice-player">Player</button>
                 </div>
             </div>
-            <button class="game-options-button game-start-button">Start Game</button>
+            <button id="start-game-button" class="game-options-button game-start-button">Start Game</button>
         </div>
     </div>
 </div>
-<div class="screen-game">
+<div class="screen-game flex flex-column display-none" id="game-scene">
     <div class="game-container flex flex-column">
         <div class="game-options-header flex">
             <button class="button-option button-back" id="button-back">
