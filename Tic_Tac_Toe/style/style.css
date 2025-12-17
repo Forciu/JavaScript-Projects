@@ -59,6 +59,7 @@ body {
     background-color: var(--color-primary-dark);
     border-radius: 15px;
     padding: 12px;
+    gap: 8px;
 }
 
 .game-move-choice-container button {
@@ -250,4 +251,64 @@ body {
 
 .result-p {
     background: rgba(255, 27, 174, 0.25);
+}
+
+button:disabled,
+button:disabled:hover,
+button:disabled:active {
+    background: rgba(155, 155, 155, 0.11);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: #0d253f;
+    padding: 24px 32px;
+    border-radius: 12px;
+    text-align: center;
+    min-width: 500px;
+    min-height: 300px;
+    color: white;
+
+    gap: 16px;
+}
+#winner-text {
+    font-size: 48px;
+}
+.modal-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.restart-game {
+    background: linear-gradient(145deg, #0d6efd, #094db1);
+    color: var(--color-white);
+    font-size: 24px;
+
+
+    transition: background-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+.board {
+    color: var(--color-white);
+    font-size: 24px;
+}
+.board:disabled {
+    scale: none;
 }
