@@ -1,4 +1,5 @@
 "use strict";
+const endGameModal = document.getElementById("winner-modal");
 
 const players = (mark, name) => {
     const getMark = () => mark
@@ -106,6 +107,8 @@ const gameController = (() => {
 
     const restartGame = () => {
         gameBoard.restartGameBoard();
+        activeButton = 9;
+
         gameBoardButton.forEach((button) => {
             button.innerHTML = ''
             button.disabled = false;
@@ -113,25 +116,12 @@ const gameController = (() => {
     }
 
     const closeGame = () => {
-        const modal = document.getElementById("winner-modal");
-
-        restartGame();
-        changeToStartScene();
-        initSelectedGameOptions();
-        player1 = null
-        player2 = null
-        opponent = null
-        modal.classList.add('hidden');
+        location.reload();
     }
 
     const changeToGameScene = () => {
         gameScene.classList.remove("display-none");
         setupScene.classList.add("display-none");
-    }
-
-    const changeToStartScene = () => {
-        gameScene.classList.add("display-none");
-        setupScene.classList.remove("display-none");
     }
 
     //Buttons
@@ -144,13 +134,14 @@ const gameController = (() => {
     })
 
     startGameButton.addEventListener('click', startGame);
-    restartButton.addEventListener('click', restartGame);
     closeGameButton.forEach((button) => {
         button.addEventListener('click', closeGame);
     })
 
     return {
         playerMarkChoice,
+        startGame,
+        restartGame,
     }
 })();
 
@@ -166,6 +157,7 @@ const gameFlow = (player1, player2, opponent) => {
     }
 }
 
+let activeButton = 9;
 const gameEngine = (player1, player2, currentPlayer) => {
     const board = document.querySelectorAll(".board");
 
@@ -173,6 +165,11 @@ const gameEngine = (player1, player2, currentPlayer) => {
         const index = Number(this.dataset.value);
 
         if (gameBoard.getBoardPosition(index) === '') {
+            activeButton -= 1;
+            if (activeButton === 0) {
+                displayWinner('draw')
+            }
+
             gameBoard.setBoardMark(currentPlayer.getMark(), index);
             this.innerHTML = currentPlayer.getMark();
             this.disabled = true;
@@ -204,7 +201,9 @@ const gameEngine = (player1, player2, currentPlayer) => {
 
             if (valA === valB && valA === valC) {
                 displayWinner(currentPlayer);
+
                 board.forEach(btn => btn.disabled = true);
+                currentPlayer = null;
                 return true;
             }
         }
@@ -218,9 +217,41 @@ const gameEngine = (player1, player2, currentPlayer) => {
 }
 
 const displayWinner = (winner) => {
-    const modal = document.getElementById("winner-modal");
     const text = document.getElementById("winner-text");
+    const againButton = document.getElementById("game-again");
 
-    text.textContent = `${winner.getName()} (${winner.getMark()}) wins!`;
-    modal.classList.remove("hidden");
+    if (winner === 'draw') {
+        text.textContent = `DRAW!!`;
+    } else text.textContent = `${winner.getName()} (${winner.getMark()}) wins!`;
+
+    againButton.onclick = () => nextGame(winner);
+
+    endGameModal.classList.remove("hidden");
+};
+
+let player1Score = 0;
+let player2Score = 0;
+let drawScore = 0;
+
+const nextGame = (winner) => {
+    const player1GameScore = document.querySelector('.result-player p#value-o');
+    const player2GameScore = document.querySelector(".result-player p#value-x");
+    const drawGameScore = document.querySelector(".result-draw p#value-d");
+
+    if (winner === 'draw') {
+        drawScore++;
+        drawGameScore.textContent = drawScore.toString();
+    } else if (winner.getName() === 'Player1') {
+        player1Score++;
+        player1GameScore.textContent = player1Score.toString();
+    } else {
+        player2Score++;
+        player2GameScore.textContent = player2Score.toString();
+    }
+
+    gameController.restartGame();
+    gameController.startGame();
+
+    activeButton = 9;
+    endGameModal.classList.add("hidden");
 };
