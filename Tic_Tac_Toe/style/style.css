@@ -159,8 +159,14 @@ body {
 }
 
 .game-options-header {
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+.button-option {
+    position: absolute; /* position relative to the parent */
+    left: 0;
 }
 
 .button-option {
@@ -283,9 +289,11 @@ button:disabled:active {
 
     gap: 16px;
 }
+
 #winner-text {
     font-size: 48px;
 }
+
 .modal-actions {
     display: flex;
     gap: 16px;
@@ -309,6 +317,7 @@ button:disabled:active {
     color: var(--color-white);
     font-size: 24px;
 }
+
 .board:disabled {
     scale: none;
 }
