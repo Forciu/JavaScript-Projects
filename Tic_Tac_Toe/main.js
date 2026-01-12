@@ -1,5 +1,7 @@
 "use strict";
 const endGameModal = document.getElementById("winner-modal");
+const board = document.querySelectorAll(".board");
+let activeButton = 9;
 
 const players = (mark, name) => {
     const getMark = () => mark
@@ -41,13 +43,12 @@ const gameController = (() => {
     const startGameButton = document.getElementById("start-game-button");
     const setupScene = document.getElementById("setup-scene");
     const gameScene = document.getElementById("game-scene");
-    const restartButton = document.getElementById("button-restart");
     const closeGameButton = document.querySelectorAll(".button-back");
     const selectSignButton = document.querySelectorAll(".mark-button");
     const gameBoardButton = document.querySelectorAll(".board");
 
-    let player1;
-    let player2;
+    let player;
+    let ai;
     let opponent;
 
     const playerMarkChoice = function () {
@@ -58,8 +59,8 @@ const gameController = (() => {
         })
         this.classList.add("selected-move");
 
-        player1 = players(this.id, 'player1');
-        player2 = players(this.id === 'X' ? 'O' : 'X', 'player2');
+        player = players(this.id, 'Player');
+        ai = players(this.id === 'X' ? 'O' : 'X', 'Ai');
     }
 
     const playerOpponentChoice = function () {
@@ -102,7 +103,7 @@ const gameController = (() => {
         if (!opponent) alert('Select an opponent');
 
         changeToGameScene();
-        gameFlow(player1, player2, opponent);
+        gameFlow(player, ai, opponent);
     }
 
     const restartGame = () => {
@@ -154,67 +155,152 @@ const gameFlow = (player1, player2, opponent) => {
 
         currentPlayer = player1;
         gameEngine(player1, player2, currentPlayer);
+    } else {
+        currentPlayer = player1.getMark() === 'O' ? player1 : player2;
+        gameEngine(player1, player2, currentPlayer);
     }
 }
 
-let activeButton = 9;
 const gameEngine = (player1, player2, currentPlayer) => {
-    const board = document.querySelectorAll(".board");
+    if (currentPlayer.getName() === 'Ai' && currentPlayer.getMark() === 'O') {
+        aiMove(player2, player1.getMark());
+        currentPlayer = currentPlayer === player1 ? player2 : player1;
+    }
 
     function makeMove() {
         const index = Number(this.dataset.value);
+        checkGameProgress(index);
+        console.log(`${activeButton} --> Player`);
 
-        if (gameBoard.getBoardPosition(index) === '') {
-            activeButton -= 1;
-            if (activeButton === 0) {
-                displayWinner('draw')
-            }
+        gameBoard.setBoardMark(currentPlayer.getMark(), index);
+        this.innerHTML = currentPlayer.getMark();
+        this.disabled = true;
 
-            gameBoard.setBoardMark(currentPlayer.getMark(), index);
-            this.innerHTML = currentPlayer.getMark();
-            this.disabled = true;
-            checkWinner();
+        checkWinner(currentPlayer);
+        currentPlayer = currentPlayer === player1 ? player2 : player1;
+
+        if (currentPlayer.getName() === 'Ai') {
+            aiMove(currentPlayer, player1.getMark());
+
+            if (checkWinner(currentPlayer)) return;
+
             currentPlayer = currentPlayer === player1 ? player2 : player1;
         }
     }
-
-    const checkWinner = () => {
-        const WIN_PATTERNS = [
-            [0, 1, 2],
-            [3, 4, 5],
-            [6, 7, 8],
-            [0, 3, 6],
-            [1, 4, 7],
-            [2, 5, 8],
-            [0, 4, 8],
-            [2, 4, 6],
-        ];
-
-        for (const pattern of WIN_PATTERNS) {
-            const [a, b, c] = pattern;
-
-            const valA = gameBoard.getBoardPosition(a);
-            const valB = gameBoard.getBoardPosition(b);
-            const valC = gameBoard.getBoardPosition(c);
-
-            if (valA === '') continue;
-
-            if (valA === valB && valA === valC) {
-                displayWinner(currentPlayer);
-
-                board.forEach(btn => btn.disabled = true);
-                currentPlayer = null;
-                return true;
-            }
-        }
-
-        return false;
-    };
 
     board.forEach(gameBoard => {
         gameBoard.addEventListener("click", makeMove);
     })
 }
+const checkGameProgress = () => {
+    activeButton -= 1;
+
+    if (activeButton === 0) {
+        displayWinner('draw');
+    }
+};
+
+const checkWinner = (currentPlayer) => {
+    for (const pattern of WIN_PATTERNS) {
+        const [a, b, c] = pattern;
+
+        const valA = gameBoard.getBoardPosition(a);
+        const valB = gameBoard.getBoardPosition(b);
+        const valC = gameBoard.getBoardPosition(c);
+
+        if (valA === '') continue;
+
+        if (valA === valB && valA === valC) {
+            displayWinner(currentPlayer);
+
+            board.forEach(btn => btn.disabled = true);
+            currentPlayer = null;
+            return true;
+        }
+    }
+
+    return false;
+};
+
+const WIN_PATTERNS = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+];
+
+function aiMove(ai, humanMark) {
+    for (const pattern of WIN_PATTERNS) {
+        const [a, b, c] = pattern;
+
+        const valA = gameBoard.getBoardPosition(a);
+        const valB = gameBoard.getBoardPosition(b);
+        const valC = gameBoard.getBoardPosition(c);
+
+        // BLOCK: A & B → C
+        if (valA === humanMark && valB === humanMark && valC === '') {
+            playAiMove(ai, c);
+            return;
+        }
+        // BLOCK: A & C → B
+        if (valA === humanMark && valC === humanMark && valB === '') {
+            playAiMove(ai, b);
+            return;
+        }
+
+        // BLOCK: B & C → A
+        if (valB === humanMark && valC === humanMark && valA === '') {
+            playAiMove(ai, a);
+            return;
+        }
+        if (valA === ai.getMark() && valB === ai.getMark() && valC === '') {
+            playAiMove(ai, b);
+            return;
+        }
+        if (valA === '' && valB === ai.getMark() && valC === ai.getMark()) {
+            playAiMove(ai, b);
+            return;
+        }
+        if (valA === ai.getMark() && valB === '' && valC === ai.getMark()) {
+            playAiMove(ai, b);
+            return;
+        }
+
+        // Try to complete a winning line
+        if (valA === ai.getMark() && valB === '' && valC === '') {
+            playAiMove(ai, b);
+            return;
+        } else if (valB === ai.getMark() && valA === '' && valC === '') {
+            playAiMove(ai, a);
+            return;
+        } else if (valC === ai.getMark() && valA === '' && valB === '') {
+            playAiMove(ai, b);
+            return;
+        } else {
+            const index = Math.floor(Math.random() * 9);
+
+            if (gameBoard.getBoardPosition(index) === '') {
+                playAiMove(ai, index);
+                return;
+            }
+        }
+    }
+}
+
+function playAiMove(ai, index) {
+    gameBoard.setBoardMark(ai.getMark(), index);
+    const button = board[index];
+    button.innerHTML = ai.getMark();
+    button.disabled = true;
+
+    checkGameProgress();
+    console.log(`${activeButton} --> AI`);
+}
+
 
 const displayWinner = (winner) => {
     const text = document.getElementById("winner-text");
@@ -227,6 +313,7 @@ const displayWinner = (winner) => {
     againButton.onclick = () => nextGame(winner);
 
     endGameModal.classList.remove("hidden");
+    activeButton = 9;
 };
 
 let player1Score = 0;
