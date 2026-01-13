@@ -59,7 +59,7 @@ const gameController = (() => {
         })
         this.classList.add("selected-move");
 
-        player = players(this.id, 'Player');
+        player = players(this.id, 'Player1');
         ai = players(this.id === 'X' ? 'O' : 'X', 'Ai');
     }
 
@@ -169,21 +169,21 @@ const gameEngine = (player1, player2, currentPlayer) => {
 
     function makeMove() {
         const index = Number(this.dataset.value);
-        checkGameProgress(index);
-        console.log(`${activeButton} --> Player`);
 
         gameBoard.setBoardMark(currentPlayer.getMark(), index);
         this.innerHTML = currentPlayer.getMark();
         this.disabled = true;
+        checkGameProgress(index);
 
-        checkWinner(currentPlayer);
+        if (checkWinner(currentPlayer)) return;
+
         currentPlayer = currentPlayer === player1 ? player2 : player1;
 
         if (currentPlayer.getName() === 'Ai') {
             aiMove(currentPlayer, player1.getMark());
 
+            checkGameProgress(index);
             if (checkWinner(currentPlayer)) return;
-
             currentPlayer = currentPlayer === player1 ? player2 : player1;
         }
     }
@@ -192,6 +192,7 @@ const gameEngine = (player1, player2, currentPlayer) => {
         gameBoard.addEventListener("click", makeMove);
     })
 }
+
 const checkGameProgress = () => {
     activeButton -= 1;
 
@@ -296,9 +297,6 @@ function playAiMove(ai, index) {
     const button = board[index];
     button.innerHTML = ai.getMark();
     button.disabled = true;
-
-    checkGameProgress();
-    console.log(`${activeButton} --> AI`);
 }
 
 
@@ -313,7 +311,6 @@ const displayWinner = (winner) => {
     againButton.onclick = () => nextGame(winner);
 
     endGameModal.classList.remove("hidden");
-    activeButton = 9;
 };
 
 let player1Score = 0;
@@ -339,6 +336,5 @@ const nextGame = (winner) => {
     gameController.restartGame();
     gameController.startGame();
 
-    activeButton = 9;
     endGameModal.classList.add("hidden");
 };
