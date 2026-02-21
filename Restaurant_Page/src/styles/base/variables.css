@@ -71,3 +71,7 @@
 .grid {
     display: grid;
 }
+
+.margin-bottom-xl {
+    margin-bottom: var(--space-xl);
+}
