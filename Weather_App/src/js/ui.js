@@ -1,3 +1,5 @@
+import {createCurrentWeatherInformationIcon} from './currentWeather.js'
+
 const selectedCity = document.querySelector('#selected-city');
 const currentTime = document.querySelector('#current-date-data');
 const currentWeatherContainer = document.querySelector('.current-weather');
@@ -12,28 +14,23 @@ export const updateCityInfo = (data) => {
     currentTime.innerHTML = data?.currentConditions.datetime.slice(0, 5) ?? 'We can\'t find selected City or Country'
 }
 
-export const clearCityInfo = () => {
+export const clearWeatherInfo = () => {
     selectedCity.innerHTML = '';
     currentTime.innerHTML = '';
 
     // TODO
     //Clear current Day info
     //Clear current day Hours info
-    updateCityInfo();
+    clearWeatherContainer()
 }
 
 export const updateWeatherInformation = (currentConditions) => {
-    createCurrentWeatherInformationIcon(currentConditions)
+    createCurrentWeatherInformationIcon(currentConditions, currentWeatherContainer)
     createCurrentWeatherInformationInfo(currentConditions)
 }
 
+const clearWeatherContainer = () => {
 
-const createCurrentWeatherInformationIcon = (currentConditions) => {
-    const imgElement = document.createElement('img');
-
-    imgElement.id = 'current-weather-icon';
-    imgElement.setAttribute('src', `./assets/weather/${currentConditions.icon}.svg`);
-    currentWeatherContainer.appendChild(imgElement);
 }
 
 const createCurrentWeatherInformationInfo = (currentConditions) => {
@@ -64,6 +61,4 @@ const createCurrentWeatherInformationInfo = (currentConditions) => {
     weatherWindSpeedValue.innerHTML = currentConditions.windspeed;
     weatherTempIcon.src = './assets/information/temp.png';
     weatherWindSpeedIcon.src = './assets/information/wind.png';
-
-
 }
